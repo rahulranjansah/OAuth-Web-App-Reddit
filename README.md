@@ -2,11 +2,11 @@ Note: Not maintained by Reddit, one may use PRAW (Python Reddit API Wrapper) as 
 
 # OAuth-Web-App-Reddit
 
-OAuth2 support allows you to use reddit to authenticate on non-reddit websites and application. This authentication is relevant for Web-App and (Personal Script) not for Apps.
+OAuth2 support allows you to use Reddit to authenticate on non-reddit websites and applications. This authentication is relevant for Web-App and (Personal Script) not for Apps.
 
-## Getting started (Prequisites)
+## Getting started (Prerequisites)
 
-Before running this project, ensure that you have the following pre-requisities installed:
+Before running this project, ensure that you have the following pre-requisites installed:
 
 - Python
 - Git
@@ -15,7 +15,7 @@ Before running this project, ensure that you have the following pre-requisities 
 
 We assume that you know how to access test-script information by going to https://www.reddit.com/prefs/apps
 
-Here you will get client_id, client_secret that is to be replaced in the code above in keys.txt file. (Followed up below)
+Here you will get client_id, and client_secret that is to be replaced in the code above in the keys.txt file. (Followed up below)
 
 ## Installation
 
@@ -31,7 +31,7 @@ To get started with the matrix calculator, follow these steps:
    ```shell/terminal
    cd OAuth-Web-App-Reddit
    ```
-3. Install the required dependencies for the running the follwing command
+3. Install the required dependencies for running the following command
     ```shell/terminal
     pip install -r requirements.txt
     ```
@@ -40,51 +40,50 @@ To get started with the matrix calculator, follow these steps:
 
 ### Step 1
 
-In order to make requests to reddit's API via OAuth, you must acquire an Authorization token. In this code, open auth.py
-
-    ```shell/terminal
+In order to make requests to Reddit's API via OAuth, you must acquire an Authorization token. In this code, open auth.py
+   ```shell
     code auth.py
-    ```
+   ```
 (Followed up) Now open keys.txt, where we have to delete the example values and add your client_id, and client_secret respectively.
 
 Run auth.py
-    ```shell
+   ```shell
     python3 auth.py
-    ```
+   ```
 It should redirect you to your browser and press "Accept", which will direct you to
 
-    ```shell
+ ```shell
     http://localhost:65010/reddit_callback?state=8800d0c5d843145288b04bbe743fda78&code=8rNNqetRauaN_wb2ACWFAABFNQb0iQ#_
-    ```
-In this code, copy the value of code which is our authorization key/code, not to confuse with bearer/access_token.
+ ```
+In this code, copy the value of the code which is our authorization key/code, so as not to confuse it with bearer/access_token.
 
-    ```shell
+   ```shell
     code=8rNNqetRauaN_wb2ACWFAABFNQb0iQ
-    ```
-Ignore the #_ at the end, commonly known as fragment identifier is added in the link for security reasons.
+   ```
+Ignore the #_ at the end, commonly known as the fragment identifier, which is added in the link for security reasons.
 
 ### Step 2
 
 Copy the <code> itself in the keys.txt file below client_secret, which is our authorization code.
 
-Now open token_retrival file, which can be done by typing following command in terminal/shell.
+Now open the token_retrival file, which can be done by typing the following command in the terminal/shell.
 
-    ```shell
+   ```shell
     code token_retrival.py
-    ```
-Now run this code by update keys.txt with the new auth code,
+   ```
+Now run this code by updating keys.txt with the new auth code,
 
-    ```shell
+   ```shell
     python3 token_retrival.py
-    ```
+   ```
 
 ## Final Output
 
 If everything runs properly you may expect output like this:
 
-    ```shell
+   ```shell
     {'access_token': 'eyJhbGciOiJSUzI1NiIsImtpZCI6IlNIQTI1NjpzS3dsM40cWY4MXE2OWFFdWFyMnpLMUdhVGxjdWNZIiwidHlwIjoiSldUIn0.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNzEwMjA1MzA1LjA3MDQyMSwiaWF0IjoxNzEwMTE4OTA1LjA3MDQyMSwianRpIjoia2ZWb3RkYmFyTExvaXBPVGZTcG1CT2xjT19heFFRIiwiY2lkIjoielM0ZzRqdU1ZMFFfN3EtTWlacjROZyIsImxpZCI6InQyX2Nscjd3ZzVsIiwidDJfY2xyN3dnNWwiLV4UjBsRXFMazNLelN4UjBsRXFLTW9zU3l4SnpVMHRMazVNVHkxV2lnVUVBQURfXzlWVERHQSIsImZsbyI6OH0.n6B4bpjtAnl4zC0LxJaasZn2Fo8NbgKwD04r8tvcgp9gackdXmn0dR5olkuR4hQEh-F13OBU2_5XanZn0KxDnPY04g7UfnqtP_gMurJ6vKIsL8sWP9Pab8AVgYSODTa0ydHy_ChCcK8LK4ig9RGaRNU6V8246i8XdyZFCtPZklG_knOQBUdUXoz5YNQPKj6XoXWvSUP9pbfVGpcjYJdXnT3adNjPydCkOKptg', 'token_type': 'bearer', 'expires_in': 86400, 'scope': 'read submit privatemessages'}
-    ```
+   ```
 
 Copy the access_token and start scrapping relevant data from Reddit. (End note explains more about capability)
 
@@ -92,18 +91,18 @@ Copy the access_token and start scrapping relevant data from Reddit. (End note e
 
 Possible error you may face are:
 
-    ```shell
+   ```shell
     404
     None
     {'message': 'Not Found', 'error': 404}
-    ```
+   ```
 This error means you've entered something wrong in the code.
 
-    ```shell
+   ```shell
     429
     None
     {'message': 'Too Many Requests', 'error': 429}
-    ```
+   ```
 This error means you've tried too many time. Try again in 2-3 minutes or (Run again from first step)
 
 ## End Note
@@ -112,15 +111,15 @@ If you read https://github.com/reddit-archive/reddit/wiki/OAuth2, then under Aut
 
 They mention about the parameter named scope in the table, one may edit scope in the code in auth.py to add relevant values as per their need.
     
-    ``` shell
+   ``` shell
     scope = "submit privatemessages read <add values>"
-    ```
+   ```
 
 ## Alternative Method
 If it doesn't work and you end up with errors again and again a direct approach is shown in the file:
 
-    ```shell
+   ```shell
     direct_auth.py
-    ```
-One hs to copy all the code and print the bearer token by running the file.
+   ```
+One has to copy all the code and print the bearer token by running the file.
 
