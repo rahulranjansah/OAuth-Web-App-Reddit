@@ -64,7 +64,7 @@ Ignore the #_ at the end, commonly known as the fragment identifier, which is ad
 
 ### Step 2
 
-Copy the <code> itself in the keys.txt file below client_secret, which is our authorization code.
+Copy the code itself in the keys.txt file below client_secret, which is our authorization code.
 
 Now open the token_retrival file, which can be done by typing the following command in the terminal/shell.
 
